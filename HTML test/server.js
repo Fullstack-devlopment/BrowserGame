@@ -16,6 +16,6 @@ const server = http.createServer((req, res) => {
 });
 
 const PORT = 10241;
-server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+server.listen(10241, '0.0.0.0', () => {
+    console.log(`Server running at http://130.225.170.52:10241`);
 });
