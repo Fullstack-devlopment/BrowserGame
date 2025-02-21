@@ -8,21 +8,68 @@
             Dybt Særiøst!
         </title>
     </head>
-
     <body>
-        <h1>
-            Dybt Særiøst
-        </h1>
-        <p>
-            Spillet for dybt særiøse mennesker
-        </p>
-        <input type="text" id="Game Pin" name="Game Pin" placeholder="Indtast spil kode"><br><br>
+        <!-- frontpage view -->
+        <div id="indexView"> 
+            <h1> 
+                Dybt Særiøst 
+            </h1>
+            <p> 
+                Spillet for dybt særiøse mennesker 
+            </p>
+            <input type="text" id="Game Pin" placeholder="Indtast spil kode"><br><br>
+    
+            <button onclick="showView('enterUsernameView')">Deltag i Spil</button>
+            <br>
+            <label>Eller</label>
+            <br>
+            <button>Opret Spil</button>
+        </div>
 
-        <a href = "enterUsername.html"><button>Deltag i Spil</button></a>
-        <br>
-        <label>Eller</label>
-        <br>
-        <button>Opret Spil</button>
+        <!-- enter username view -->
+        <div id="enterUsernameView" style="display: none;">
+            <h1>
+                Skriv dit brugernavn
+            </h1>
+            <p>
+                Inden du joner et game, skal du have et brugernavn
+            </p>
+            <input type="text" id="usernameInput" placeholder="Skriv brugernavn her" ><br>
+            <button onclick="joinGame()"> Enter</button>
+        </div>
+
+        <!-- waiting room view -->
+        <div id="waitingRoomView" style="display: none;">
+            <h1>
+                Venterum
+            </h1>
+            <p>
+                Du har joinet spil XX. Vent på alle spillere
+            </p>
+            <button> Start Spil</button>
+        </div>
+
+        <script>
+            function showView(viewId) {
+                // hide all views
+                document.getElementById('indexView').style.display = 'none';
+                document.getElementById('enterUsernameView').style.display = 'none';
+                document.getElementById('waitingRoomView').style.display = 'none';
+
+                // show the selected view
+                document.getElementById(viewId).style.display = 'block';
+            }
+
+            function joinGame() {
+                let username = document.getElementById('usernameInput').value.trim();
+                if (username !== "") {
+                    showView('waitingRoomView');
+                } else {
+                    alert('Du skal indtaste et brugernavn');
+                }
+            }
+        </script>
+        
         
     </body>
 </html>

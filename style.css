@@ -1,14 +1,17 @@
 /* styles.css */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #B983FF;
     color: #333;
     text-align: center;
     margin: 50px;
 }
 
 h1 {
-    color: #007bff;
+    font-family: fantasy;
+    color: #FBF3B9;
+    font-size: 75px;
+    font-style: italic;
 }
 
 p {
