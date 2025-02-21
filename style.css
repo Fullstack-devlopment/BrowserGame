@@ -10,10 +10,9 @@ body {
 h1 {
     font-family: fantasy;
     color: #FBF3B9;
-    font-size: 75px;
+    font-size:6vw;
     font-style: italic;
 }
-
 p {
     font-size: 18px;
 }
