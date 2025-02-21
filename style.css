@@ -8,8 +8,10 @@ body {
 }
 
 h1 {
-    color: #000000;
+    font-family: fantasy;
+    color: #FBF3B9;
     font-size: 75px;
+    font-style: italic;
 }
 
 p {
