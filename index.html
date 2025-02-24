@@ -62,7 +62,7 @@
             <input type="text" id="usernameInput" placeholder="Skriv brugernavn her" >
             <br>
             <br>
-            <button onclick="joinGame()"> Enter</button>
+            <button onclick="joinGame(); showView('waitingRoomView');"> Enter</button>
         </div>
 
         <!-- waiting room view -->
@@ -86,7 +86,6 @@
                 // show the selected view
                 document.getElementById(viewId).style.display = 'block';
             }
-            joinGame();
         </script>
         
         

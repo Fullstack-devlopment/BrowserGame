@@ -8,7 +8,7 @@ function createGame() {
     .then(response => response.json())
     .then(data => {
         if (data.message === 'Game created successfully: ') {
-            alert('Game created successfully!: ', data.gameId);
+            alert('Game created successfully!: ', data.game_id);
         } else {
             alert('Failed to create game: ' + data.message);
         }
@@ -33,8 +33,7 @@ function joinGame() {
         .then(response => response.json())
         .then(data => {
             if (data.message === 'Player added successfully') {
-                alert('Player added:', data.player.id, data.player.name);
-                showView('waitingRoomView');
+                alert('Player added:', data.id, data.name);
             } else {
                 alert('Failed to join game: ' + data.message);
             }
