@@ -34,6 +34,7 @@ function joinGame() {
         .then(data => {
             if (data.message === 'Player added successfully') {
                 alert('Player added:', data.player.id, data.player.name);
+                showView('waitingRoomView');
             } else {
                 alert('Failed to join game: ' + data.message);
             }
