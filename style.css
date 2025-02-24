@@ -8,12 +8,13 @@ body {
 }
 
 h1 {
-    font-family: "Oswald", Impact, "Arial Narrow Bold", sans-serif;
+    font-family: "Anton", Impact, "Arial Narrow Bold", sans-serif;
     color: #FBF3B9;
     font-size:10vw;
     font-style: italic;
-    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
     letter-spacing: 2px;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
 }
 p {
     font-size: 18px;
