@@ -7,8 +7,9 @@ function createGame() {
     })
     .then(response => response.json())
     .then(data => {
-        if (data.message === 'Game created successfully: ') {
-            alert('Game created successfully!: ', data.game_id);
+        if (data.message === 'Game created successfully') {
+            // Access gameId from the response and show it in the alert
+            alert('Game created successfully! Game ID: ' + data.gameId);
         } else {
             alert('Failed to create game: ' + data.message);
         }
@@ -18,6 +19,7 @@ function createGame() {
         alert('An error occurred while creating the game.');
     });
 }
+
 
 function joinGame() {
     let username = document.getElementById('usernameInput').value.trim();
@@ -33,7 +35,8 @@ function joinGame() {
         .then(response => response.json())
         .then(data => {
             if (data.message === 'Player added successfully') {
-                alert('Player added:', data.id, data.name);
+                const player = data.player; // this should be the player object
+                alert('Player added: ID = ' + player.id + ', Name = ' + player.name);
             } else {
                 alert('Failed to join game: ' + data.message);
             }
