@@ -18,6 +18,7 @@ h1 {
 }
 p {
     font-size: 18px;
+    font-weight: 600;
 }
 
 input[type="text"] {
@@ -61,6 +62,10 @@ button:hover {
     background-color: #FFD700; /* Slightly brighter yellow */
     box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
     transform: scale(1.05); /* Subtle grow effect */
+}
+
+label{
+    font-weight: 600;
 }
 
 /* Active (Click) Effect */
