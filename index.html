@@ -4,10 +4,28 @@
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+        <!--<link rel="stylesheet" href="style.css">-->
+        <!--<link rel="stylesheet" href="GameStyle.css">-->
         <title>
             Dybt Seriøst!
         </title>
+
+        <script>
+            // List of available CSS files
+            const stylesheets = ["GameStyle.css", "style.css", "style2.css", "style3.css","style4.css"];
+        
+            // Select one randomly
+            const randomStyle = stylesheets[Math.floor(Math.random() * stylesheets.length)];
+        
+            // Create a link element for the chosen stylesheet
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = randomStyle;
+        
+            // Append to <head>
+            document.head.appendChild(link);
+        </script>
+        
     </head>
     <body>
         <!-- frontpage view -->

@@ -1,7 +1,7 @@
-/* style.css */
+/* GameStyle.css */
 body {
     font-family: Arial, sans-serif;
-    background-color: #B983FF;
+    background-color: #3D8D7A;
     color: #333;
     text-align: center;
     margin: 50px;
@@ -9,7 +9,7 @@ body {
 
 h1 {
     font-family: "Anton", Impact, "Arial Narrow Bold", sans-serif;
-    color: #FBF3B9;
+    color: #B3D8A8;
     font-size:10vw;
     font-style: italic;
     font-weight: 700;
@@ -27,7 +27,7 @@ input[type="text"] {
     padding: 12px 15px;
     font-size: 16px;
     font-family: Arial, sans-serif;
-    border: 2px solid #FBF3B9; /* Matches your heading color */
+    border: 2px solid #B3D8A8; /* Matches your heading color */
     border-radius: 8px; /* Smooth rounded edges */
     background-color: #ffffff;
     color: #333;
@@ -39,12 +39,12 @@ input[type="text"] {
 /* Hover and Focus Effects */
 input[type="text"]:hover,
 input[type="text"]:focus {
-    border-color: #FFD700; /* Changes border color on focus */
+    border-color: #A3D1C6; /* Changes border color on focus */
     box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
 }
 
 button {
-    background-color: #FBF3B9; /* Soft yellow background */
+    background-color: #B3D8A8; /* Soft yellow background */
     color: #333; /* Dark text for contrast */
     font-size: 18px;
     font-weight: bold;
@@ -59,7 +59,7 @@ button {
 
 /* Hover Effect */
 button:hover {
-    background-color: #FFD700; /* Slightly brighter yellow */
+    background-color: #A3D1C6; /* Slightly brighter yellow */
     box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
     transform: scale(1.05); /* Subtle grow effect */
 }
@@ -70,6 +70,6 @@ label{
 
 /* Active (Click) Effect */
 button:active {
-    background-color: #E8C500;
+    background-color: #A3D1C6;
     transform: scale(0.98); /* Slight press-down effect */
 }
