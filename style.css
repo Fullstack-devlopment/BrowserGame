@@ -8,11 +8,62 @@ body {
 }
 
 h1 {
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: #FBF3B9;
-    font-size:6vw;
+    font-size:10vw;
     font-style: italic;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
 }
 p {
     font-size: 18px;
+}
+
+input[type="text"] {
+    width: 80%; /* Responsive width */
+    max-width: 400px; /* Prevents it from getting too wide */
+    padding: 12px 15px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    border: 2px solid #FBF3B9; /* Matches your heading color */
+    border-radius: 8px; /* Smooth rounded edges */
+    background-color: #ffffff;
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover and Focus Effects */
+input[type="text"]:hover,
+input[type="text"]:focus {
+    border-color: #FFD700; /* Changes border color on focus */
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    background-color: #FBF3B9; /* Soft yellow background */
+    color: #333; /* Dark text for contrast */
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px; /* Smooth rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover Effect */
+button:hover {
+    background-color: #FFD700; /* Slightly brighter yellow */
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Subtle grow effect */
+}
+
+/* Active (Click) Effect */
+button:active {
+    background-color: #E8C500;
+    transform: scale(0.98); /* Slight press-down effect */
 }
