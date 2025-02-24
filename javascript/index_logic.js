@@ -7,10 +7,8 @@ function createGame() {
     })
     .then(response => response.json())
     .then(data => {
-        if (data.message === 'Game created successfully') {
+        if (data.message === 'Game created successfully: ', data.gameId) {
             console.log('Game created with ID:', data.gameId);
-            showView('gameTableView');
-            renderGameTable(data.gameId);
         } else {
             alert('Failed to create game: ' + data.message);
         }
