@@ -72,3 +72,29 @@ button:active {
     background-color: #AF1740;
     transform: scale(0.98); /* Slight press-down effect */
 }
+
+/* Unordered List Styles */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* List Item Styles */
+.answer-list {
+    list-style-position: inside; /* Moves numbers closer to text */
+    padding: 0;
+}
+
+.answer-list li {
+    display: inline-block; /* Ensures the items are in blocks */
+    width: 150px; /* Adjust width to your needs */
+    padding: 10px; /* Add padding for button-like feel */
+    margin: 5px 0; /* Add space between items */
+    background-color: #CC2B52; /* Light yellow button color */
+    border: 2px solid #AF1740; /* Button-like border */
+    border-radius: 8px; /* Rounded corners */
+    text-align: center; /* Center text */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
