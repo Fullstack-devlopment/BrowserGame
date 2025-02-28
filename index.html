@@ -5,6 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
+        <script src="showViewIndex.js" defer></script>
+        <script src="joinGame.js" defer></script>
         <title>
             Dybt Seriøst!
         </title>
@@ -54,48 +56,5 @@
             </p>
             <button> Start Spil</button>
         </div>
-
-        <script>
-            function showView(viewId) {
-                // hide all views
-                document.getElementById('indexView').style.display = 'none';
-                document.getElementById('enterUsernameView').style.display = 'none';
-                document.getElementById('waitingRoomView').style.display = 'none';
-
-                // show the selected view
-                document.getElementById(viewId).style.display = 'block';
-            }
-
-            function joinGame() {
-                let username = document.getElementById('usernameInput').value.trim();
-                if (username !== "") {
-                    // Send a POST request to the backend to add the player
-                    fetch('http://130.225.170.52:10241/addPlayer', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ username: username })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.message === 'Player added successfully') {
-                            console.log('Player added with ID:', data.playerId);
-                            showView('waitingRoomView');
-                        } else {
-                            alert('Failed to join game: ' + data.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('An error occurred while joining the game.');
-                    });
-                } else {
-                    alert('Du skal indtaste et brugernavn');
-                }
-            }
-        </script>
-        
-        
     </body>
 </html>
