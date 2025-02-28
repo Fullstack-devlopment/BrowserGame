@@ -76,14 +76,14 @@
             <h2>
                 Spillere:
             </h2>
-            <ul id="listOfPlayers">
+            <p id="listOfPlayers">
 
-            </ul>
+            </p>
             <button> Start Spil</button>
         </div>
 
         <script>
-            const socket = io('http://130.225.170.52:3000'); // Connect to backend server
+
             function showView(viewId) {
                 // hide all views
                 document.getElementById('indexView').style.display = 'none';
@@ -94,37 +94,21 @@
                 document.getElementById(viewId).style.display = 'block';
             }
 
-            async function fetchPlayers() {
-                try {
-                    const response = await fetch('http://130.225.170.52:3000/users');
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch players');
-                    }
-                    const players = await response.json();
-                    updatePlayersList(players);
-                } catch (error) {
-                    console.error('Error:', error);
-                }
-            }
+            let players = [];
 
-            function updatePlayersList(players) {
-                const list = document.getElementById('playersList');
-                list.innerHTML = ''; // Clear previous entries
+            // Function to update the player list in the waiting room view
+            function updatePlayerList() {
+                const playerListContainer = document.getElementById("listOfPlayers");
+                playerListContainer.innerHTML = '';  // Clear existing list
+                
+                // Loop through the players and display them
                 players.forEach(player => {
-                    const li = document.createElement('li');
-                    li.textContent = player.name;
-                    list.appendChild(li);
+                    const playerElement = document.createElement("p");
+                    playerElement.textContent = player;
+                    playerListContainer.appendChild(playerElement);
                 });
             }
 
-            // Fetch players when the page loads
-            fetchPlayers();
-
-            // Listen for new player updates in real-time
-            socket.on('userAdded', (player) => {
-                console.log('New player added:', player);
-                fetchPlayers(); // Refresh the list when a new player is added
-            });
         </script>
         
         
