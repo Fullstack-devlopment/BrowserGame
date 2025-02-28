@@ -1,85 +1,85 @@
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css">
-        <script src="showViewGame.js" defer></script>
-        <script src="sendAnswer.js" defer></script>
-        <script src="voteAnswer.js" defer></script>
-        <script>
-            // List of available CSS files
-            const stylesheets = ["GameStyle.css", "style2.css", "style3.css","style4.css"];
-        
-            // Select one randomly
-            const randomStyle = stylesheets[Math.floor(Math.random() * stylesheets.length)];
-        
-            // Create a link element for the chosen stylesheet
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = randomStyle;
-        
-            // Append to <head>
-            document.head.appendChild(link);
-        </script>
-        <title>
-            Dybt Seriøst!
-        </title>
-        </head>
-        <body>
-            <!-- View when writing answers -->
-            <div id="writeAnswer">
-                <p>
-                    Skal der være tekst her?
-                </p>
-                <h2>
-                    Dummy Promt! Hvad synes du _____________?
-                </h2>
-                <br>
-                <input type="text" id="answerInput" placeholder="Skriv dit svar her">
-                <br>
-                <br>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="showViewGame.js" defer></script>
+    <script src="sendAnswer.js" defer></script>
+    <script src="voteAnswer.js" defer></script>
+    <script>
+        // List of available CSS files
+        const stylesheets = ["GameStyle.css", "style2.css", "style3.css","style4.css"];
+    
+        // Select one randomly
+        const randomStyle = stylesheets[Math.floor(Math.random() * stylesheets.length)];
+    
+        // Create a link element for the chosen stylesheet
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = randomStyle;
+    
+        // Append to <head>
+        document.head.appendChild(link);
+    </script>
+    <title>
+        Dybt Seriøst!
+    </title>
+    </head>
+    <body>
+        <!-- View when writing answers -->
+        <div id="writeAnswer">
+            <p>
+                Skal der være tekst her?
+            </p>
+            <h2>
+                Dummy Promt! Hvad synes du _____________?
+            </h2>
+            <br>
+            <input type="text" id="answerInput" placeholder="Skriv dit svar her">
+            <br>
+            <br>
 
-                <button onclick="sendAnswer(); showView('voteAnswer')"> Send Svar </button>
-            </div>
+            <button onclick="sendAnswer(); showView('voteAnswer')"> Send Svar </button>
+        </div>
 
 
-            <!-- View when voting for answers -->
-            <div id="voteAnswer" style="display: none;">
-                <p>
-                    Stem på det bedste svar!
-                </p>
-                <h2>
-                    Dummy Promt! Hvad synes du _____________?
-                </h2>
-                <br>
-                <ul>
-                    <li> <button onclick="voteAnswer() ; showView('bestAnswer')"> Svar 1 </button> </li> <br>
-                    <li> <button onclick="voteAnswer() ; showView('bestAnswer')"> Svar 2 </button> </li> <br>
-                    <li> <button onclick="voteAnswer() ; showView('bestAnswer')"> Svar 3 </button> </li> <br>
-                    <li> <button onclick="voteAnswer() ; showView('bestAnswer')"> Svar 4 </button> </li> <br>
-                </ul>
-            </div>
+        <!-- View when voting for answers -->
+        <div id="voteAnswer" style="display: none;">
+            <p>
+                Stem på det bedste svar!
+            </p>
+            <h2>
+                Dummy Promt! Hvad synes du _____________?
+            </h2>
+            <br>
+            <ul>
+                <li> <button onclick="voteAnswer() ; showView('bestAnswer')"> Svar 1 </button> </li> <br>
+                <li> <button onclick="voteAnswer() ; showView('bestAnswer')"> Svar 2 </button> </li> <br>
+                <li> <button onclick="voteAnswer() ; showView('bestAnswer')"> Svar 3 </button> </li> <br>
+                <li> <button onclick="voteAnswer() ; showView('bestAnswer')"> Svar 4 </button> </li> <br>
+            </ul>
+        </div>
 
-            <!-- Best Answer View -->
-            <div id="bestAnswer" style="display: none;">
-                <p>
-                    Her er det bedste svar!
-                </p>
-                <h2>
-                    Dummy Promt! Hvad synes du _____________?
-                </h2>
-                <br>
-                
-                <h3>
-                    <ol class="answer-list">
-                        <li> Svar 1 </li> <br>
-                        <li> Svar 2 </li> <br>
-                        <li> Svar 3 </li> <br>
-                        <li> Svar 4 </li> <br>
-                    </ol>
-                </h3>
-            </div>
-        </body>
-
-    </html>
+        <!-- Best Answer View -->
+        <div id="bestAnswer" style="display: none;">
+            <p>
+                Her er det bedste svar!
+            </p>
+            <h2>
+                Dummy Promt! Hvad synes du _____________?
+            </h2>
+            <br>
+            
+            <h3>
+                <ol class="answer-list">
+                    <li> Svar 1 </li> <br>
+                    <li> Svar 2 </li> <br>
+                    <li> Svar 3 </li> <br>
+                    <li> Svar 4 </li> <br>
+                </ol>
+            </h3>
+        </div>
+    </body>
+</html>
