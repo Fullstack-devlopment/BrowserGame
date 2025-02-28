@@ -73,6 +73,12 @@
             <p>
                 Du har joinet spil XX. Vent på alle spillere
             </p>
+            <h2>
+                Spillere:
+            </h2>
+            <ul id="listOfPlayers">
+
+            </ul>
             <button> Start Spil</button>
         </div>
 
@@ -85,6 +91,20 @@
 
                 // show the selected view
                 document.getElementById(viewId).style.display = 'block';
+            }
+            let players = [];
+
+            // Function to update the player list in the waiting room view
+            function updateListOfPlayers() {
+                const playerListContainer = document.getElementById("listOfPlayers");
+                playerListContainer.innerHTML = '';  // Clear existing list
+                
+                // Loop through the players and display them
+                players.forEach(player => {
+                    const playerElement = document.createElement("li");
+                    playerElement.textContent = player;
+                    playerListContainer.appendChild(playerElement);
+                });
             }
         </script>
         
