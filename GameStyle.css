@@ -73,3 +73,10 @@ button:active {
     background-color: #A3D1C6;
     transform: scale(0.98); /* Slight press-down effect */
 }
+
+.one { color: #5D576B; }
+.two { color: #D7BCC8; }
+.three { color: #563635; }
+.four { color: #DEEFB7; }
+.five { color: #445E93; }
+.six { color: #E1CDB5; }

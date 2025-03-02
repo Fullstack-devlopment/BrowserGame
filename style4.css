@@ -73,6 +73,13 @@ button:active {
     transform: scale(0.98); /* Slight press-down effect */
 }
 
+.one { color: #A76571; }
+.two { color: #729EA1; }
+.three { color: #63A088; }
+.four { color: #A599B5; }
+.five { color: #6BA368; }
+.six { color: #689689; }
+
 /*9B7EBD*/
 
 /*D4BEE4*/
