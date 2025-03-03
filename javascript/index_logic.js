@@ -1,5 +1,5 @@
 function createGame() {
-    fetch('http://130.225.170.52:10241/createGame', {
+    fetch('https://130.225.170.52:10242/createGame', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -20,6 +20,7 @@ function createGame() {
     });
 }
 
+/*
 function joinGame() {
     let playername = document.getElementById('usernameInput').value.trim();
     let gameId = document.getElementById('gamePinInput').value.trim(); // Get the game code
@@ -29,7 +30,7 @@ function joinGame() {
         return;
     }
 
-    fetch('http://130.225.170.52:10241/joinGame', {
+    fetch('https://130.225.170.52:10242/joinGame', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -58,6 +59,7 @@ function joinGame() {
         alert('An error occurred while joining the game.');
     });
 }
+*/
 
 
 /*
@@ -65,7 +67,7 @@ function joinGame() {
     let playername = document.getElementById('usernameInput').value.trim();
     if (playername !== "") {
         // Send a POST request to the backend to add the player
-        fetch('http://130.225.170.52:10241/addPlayer', {
+        fetch('https://130.225.170.52:10241/addPlayer', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
