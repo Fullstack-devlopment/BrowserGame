@@ -73,7 +73,68 @@
             <p>
                 Du har joinet spil XX. Vent på alle spillere
             </p>
+
             <button onclick="window.location.href='gamePages.html'"> Start Spil</button>
         </div>
+
+            <h2>
+                Spillere:
+            </h2>
+            <p id="listOfPlayers">
+
+            </p>
+            <button> Start Spil</button>
+        </div>
+
+        <script>
+
+            function showView(viewId) {
+                // hide all views
+                document.getElementById('indexView').style.display = 'none';
+                document.getElementById('enterUsernameView').style.display = 'none';
+                document.getElementById('waitingRoomView').style.display = 'none';
+
+                // show the selected view
+                document.getElementById(viewId).style.display = 'block';
+                if (viewId === 'waitingRoomVies') {
+                    updatePlayerList();
+                }
+            }
+
+            // let players = [];
+
+            // Function to update the player list in the waiting room view
+            async function updatePlayerList() {
+                try {
+                    const response = await fetch('/users');
+                    if(!response) {
+                        throw new Error('Kunne ikke finde spillere');
+                    }
+                    const players = await response.json();
+
+                    const playerListContainer = document.getElementById("listOfPlayers");
+                    playerListContainer.innerHTML = '';  // Clear existing list
+
+                    const colors = ["one", "two", "three", "four", "five", "six"];
+                    // Loop through the players and display them
+                    players.forEach((player, index) => {
+                        const playerElement = document.createElement("p");
+                        playerElement.textContent = player;
+                        playerElement.classList.add(colors[index % colors.length]);
+                        playerListContainer.appendChild(playerElement);
+                    });
+                } catch(error) {
+                    console.error('Fejl ved at finde spillere', error);
+                }
+            }
+
+            const socket = io; // Initialize Socket.IO connection
+
+            socket.on('userAdded', (player) =>{
+                updatePlayerList(); // Refresh the player list when a new player is added
+            })
+
+        </script>
+       
     </body>
 </html>
