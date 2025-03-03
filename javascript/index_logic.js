@@ -20,6 +20,7 @@ function createGame() {
     });
 }
 
+/*
 function joinGame() {
     let playername = document.getElementById('usernameInput').value.trim();
     let gameId = document.getElementById('gamePinInput').value.trim(); // Get the game code
@@ -58,6 +59,7 @@ function joinGame() {
         alert('An error occurred while joining the game.');
     });
 }
+*/
 
 
 /*
