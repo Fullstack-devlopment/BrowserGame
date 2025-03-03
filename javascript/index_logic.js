@@ -65,7 +65,7 @@ function joinGame() {
     let playername = document.getElementById('usernameInput').value.trim();
     if (playername !== "") {
         // Send a POST request to the backend to add the player
-        fetch('http://130.225.170.52:10241/addPlayer', {
+        fetch('https://130.225.170.52:10241/addPlayer', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
