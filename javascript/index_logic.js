@@ -1,5 +1,5 @@
 function createGame() {
-    fetch('http://130.225.170.52:10241/createGame', {
+    fetch('https://130.225.170.52:10242/createGame', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ function joinGame() {
         return;
     }
 
-    fetch('http://130.225.170.52:10241/joinGame', {
+    fetch('https://130.225.170.52:10242/joinGame', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
