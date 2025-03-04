@@ -1,5 +1,5 @@
 function createGame() {
-    fetch('https://localhost:10242/createGame', {
+    fetch('https://localhost:443/createGame', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
