@@ -14,7 +14,7 @@ async function updatePlayerList() {
         // Loop through the players and display them
         players.forEach((player, index) => {
             const playerElement = document.createElement("p");
-            playerElement.textContent = player;
+            playerElement.textContent = player.playername;
             playerElement.classList.add(colors[index % colors.length]);
             playerListContainer.appendChild(playerElement);
         });
