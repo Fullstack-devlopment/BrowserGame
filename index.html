@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="showViewIndex.js" defer></script>
         <script src="joinGame.js" defer></script>
+        <script src ="updatePlayerList"defer></script>
         <title>
             Dybt Seriøst!
         </title>
@@ -103,30 +104,7 @@
 
             // let players = [];
 
-            // Function to update the player list in the waiting room view
-            async function updatePlayerList() {
-                try {
-                    const response = await fetch('/users');
-                    if(!response) {
-                        throw new Error('Kunne ikke finde spillere');
-                    }
-                    const players = await response.json();
 
-                    const playerListContainer = document.getElementById("listOfPlayers");
-                    playerListContainer.innerHTML = '';  // Clear existing list
-
-                    const colors = ["one", "two", "three", "four", "five", "six"];
-                    // Loop through the players and display them
-                    players.forEach((player, index) => {
-                        const playerElement = document.createElement("p");
-                        playerElement.textContent = player;
-                        playerElement.classList.add(colors[index % colors.length]);
-                        playerListContainer.appendChild(playerElement);
-                    });
-                } catch(error) {
-                    console.error('Fejl ved at finde spillere', error);
-                }
-            }
 
             const socket = io; // Initialize Socket.IO connection
 

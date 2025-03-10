@@ -36,3 +36,4 @@ function joinGame() {
         alert('An error occurred while joining the game.');
     });
 }
+

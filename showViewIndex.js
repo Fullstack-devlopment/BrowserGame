@@ -7,4 +7,7 @@ function showView(viewId) {
 
     // show the selected view
     document.getElementById(viewId).style.display = 'block';
+    if (viewId === 'waitingRoomView'){
+        updatePlayerList();
+    }
 }
