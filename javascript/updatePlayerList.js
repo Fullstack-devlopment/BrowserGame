@@ -1,7 +1,7 @@
 // Function to update the player list in the waiting room view
 async function updatePlayerList() {
     try {
-        const response = await fetch('/users');
+        const response = await fetch('/players');
         if(!response) {
             throw new Error('Kunne ikke finde spillere');
         }
