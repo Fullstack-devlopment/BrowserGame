@@ -23,6 +23,7 @@ function joinGame() {
             // Update the waiting room view with the game code
             document.getElementById('waitingRoomView').innerHTML = `
                 <h1>Venterum</h1>
+                <p id="gameIdDisplay" style="display:none;">${player.gameId}</p>
                 <p>Du har joinet spil ${player.gameId}. Vent på alle spillere</p>
                 <button onclick="startGame('${player.gameId}')">Start Spil</button>
             `;
