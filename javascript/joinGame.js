@@ -26,6 +26,10 @@ function joinGame() {
                 <p id="gameIdDisplay" style="display:none;">${player.gameId}</p>
                 <p>Du har joinet spil ${player.gameId}. Vent på alle spillere</p>
                 <button onclick="startGame('${player.gameId}')">Start Spil</button>
+
+                <h2>Spillere:</h2>
+                <!-- playerList is here -->
+                <ul id="playerList"></ul>
             `;
             showView('waitingRoomView'); // Transition to waiting room view
         } else {

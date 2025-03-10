@@ -7,7 +7,7 @@ async function updatePlayerList() {
         }
         const players = await response.json();
 
-        const playerListContainer = document.getElementById("listOfPlayers");
+        const playerListContainer = document.getElementById("playerList");
         playerListContainer.innerHTML = '';  // Clear existing list
 
         const colors = ["one", "two", "three", "four", "five", "six"];
