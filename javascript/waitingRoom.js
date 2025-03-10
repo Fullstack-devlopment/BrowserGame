@@ -7,7 +7,7 @@ socket.on('playerJoined', (data) => {
     if (data.gameId === currentGameId) {
         const playerList = document.getElementById('playerList');
         const li = document.createElement('li');
-        li.textContent = data.playername.name;
+        li.textContent = data.playername;
         playerList.appendChild(li);
     }
 });
