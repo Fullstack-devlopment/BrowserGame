@@ -10,10 +10,11 @@
         </title>
 
         <!-- Link to the external JavaScript file -->
+        <script src ="javascript/updatePlayerList"defer></script>
         <script src="javascript/showViewIndex.js" defer></script>
         <script src="javascript/joinGame.js" defer></script>
-        <script src ="javascript/updatePlayerList"defer></script>
         <script src="javascript/index_logic.js"></script>
+        <script src="javasript/waitingRoom.js"></script>
 
         <script>
             // List of available CSS files
@@ -87,33 +88,6 @@
             </p>
             <button> Start Spil</button>
         </div>
-
-        <script>
-
-            function showView(viewId) {
-                // hide all views
-                document.getElementById('indexView').style.display = 'none';
-                document.getElementById('enterUsernameView').style.display = 'none';
-                document.getElementById('waitingRoomView').style.display = 'none';
-
-                // show the selected view
-                document.getElementById(viewId).style.display = 'block';
-                if (viewId === 'waitingRoomVies') {
-                    updatePlayerList();
-                }
-            }
-
-            // let players = [];
-
-
-
-            const socket = io; // Initialize Socket.IO connection
-
-            socket.on('userAdded', (player) =>{
-                updatePlayerList(); // Refresh the player list when a new player is added
-            })
-
-        </script>
        
     </body>
 </html>
