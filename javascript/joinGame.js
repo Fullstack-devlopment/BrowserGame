@@ -36,6 +36,7 @@ function joinGame() {
             showView('waitingRoomView'); // Transition to waiting room view
 
             initializeSocket(player.gameId);
+            showView('waitingRoomView')
         } else {
             alert('Failed to join game: ' + data.message);
         }
