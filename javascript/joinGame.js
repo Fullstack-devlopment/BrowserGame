@@ -52,7 +52,7 @@ function joinGame() {
     });
 }
 
-// ✅ Extract real-time listeners into a separate function
+// Extract real-time listeners into a separate function
 function setupSocketListeners(gameId) {
     socket.emit('fetchPlayers', { gameId });
 
