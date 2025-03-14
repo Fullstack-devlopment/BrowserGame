@@ -6,6 +6,7 @@ function joinGame() {
         alert('Du skal indtaste både et brugernavn og spil kode');
         return;
     }
+    console.log('Joining game with data:', JSON.stringify({ playername, gameId }));
 
     fetch('https://130.225.170.52:10242/joinGame', {
         method: 'POST',
