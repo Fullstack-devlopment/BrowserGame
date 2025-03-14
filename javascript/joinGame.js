@@ -32,15 +32,7 @@ function joinGame() {
             }));
 
             
-
-            document.getElementById('waitingRoomView').innerHTML = `
-                <h1>Venterum</h1>
-                <p>Du har joinet spil ${player.gameId}. Vent på alle spillere</p>
-                <button onclick="startGame('${player.gameId}')">Start Spil</button>
-                <h2>Spillere:</h2>
-                <ul id="playerList"></ul>
-            `;
-
+            document.getElementById('gameIdText').textContent = player.gameId;
             showView('waitingRoomView'); 
 
             // 🔹 Now listen for real-time updates

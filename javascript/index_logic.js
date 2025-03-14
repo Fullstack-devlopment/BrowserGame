@@ -23,22 +23,23 @@ function createGame() {
 
 function checkIfHostAndUpdateUI() {
     const playerSession = JSON.parse(localStorage.getItem('playerSession'));
-    
+
     if (!playerSession) {
         console.error('No player session found.');
         return;
     }
 
     const { playerId, hostId } = playerSession;
+    const startButton = document.getElementById('startGameButton');
 
-    // Check if the current player is the host
+    if (!startButton) {
+        console.error('Start game button not found!');
+        return;
+    }
+
     if (playerId === hostId) {
-        // Show the "Start Spil" button if the current player is the host
-        const startButton = document.querySelector('#waitingRoomView button');
-        startButton.style.display = 'block'; // Make it visible
+        startButton.style.display = 'block'; // Show button for host
     } else {
-        // Hide the "Start Spil" button if the current player is not the host
-        const startButton = document.querySelector('#waitingRoomView button');
-        startButton.style.display = 'none'; // Hide the button
+        startButton.style.display = 'none';  // Hide button for non-hosts
     }
 }
