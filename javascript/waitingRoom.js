@@ -4,16 +4,7 @@ const socket = io('https://130.225.170.52:10242'); // Use your actual server add
 socket.on('playerJoined', (data) => {
     console.log('playerJoined event data:', data);
     // Check if the event is for the current game
-    const gameIdElement = document.getElementById('gameIdDisplay');
-    if (!gameIdElement) {
-        console.error('Game ID display element not found!');
-        return;
-    }
-
-    const currentGameId = gameIdElement.textContent.trim();
-    console.log('Current game ID:', currentGameId, 'Received game ID:', data.gameId);
-    
-
+    const currentGameId = document.getElementById('gameIdDisplay').textContent;
     if (data.gameId === currentGameId) {
         const playerList = document.getElementById('playerList');
         const li = document.createElement('li');
