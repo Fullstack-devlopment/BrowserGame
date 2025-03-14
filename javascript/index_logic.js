@@ -38,8 +38,10 @@ function checkIfHostAndUpdateUI() {
     }
 
     if (playerId === hostId) {
+        console.log('Player is the host.');
         startButton.style.display = 'block'; // Show button for host
     } else {
+        console.log('Player is not the host.');
         startButton.style.display = 'none';  // Hide button for non-hosts
     }
 }
