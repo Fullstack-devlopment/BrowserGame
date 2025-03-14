@@ -93,6 +93,7 @@ function initializeSocket(gameId) {
             const playerList = document.getElementById('playerList');
             const playerExists = Array.from(playerList.children).some(li => li.textContent === data.playername);
             if (!playerExists) {
+                console.log('Adding new player to the list:', data.playername);
                 const li = document.createElement('li');
                 li.textContent = data.playername;
                 playerList.appendChild(li);
