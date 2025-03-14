@@ -21,6 +21,9 @@ function joinGame() {
             const player = data.player; // Extract player details
             alert(`Player added: ID = ${player.id}, Name = ${player.name}, Game = ${player.gameId}`);
 
+            const session = { playerId: player.id, gameId: player.gameId };
+            localStorage.setItem('gameSession', JSON.stringify(session));
+
             // Update the waiting room view with the game code
             document.getElementById('waitingRoomView').innerHTML = `
                 <h1>Venterum</h1>
@@ -33,6 +36,8 @@ function joinGame() {
                 <ul id="playerList"></ul>
             `;
             showView('waitingRoomView'); // Transition to waiting room view
+
+            initializeSocket(player.gameId);
         } else {
             alert('Failed to join game: ' + data.message);
         }
@@ -43,3 +48,29 @@ function joinGame() {
     });
 }
 
+
+function initializeSocket(gameId) {
+    const socket = io('https://130.225.170.52:10242');
+
+    const savedSession = JSON.parse(localStorage.getItem('gameSession'));
+
+    if (savedSession) {
+        socket.emit('rejoinGame', savedSession); 
+    }
+
+    socket.on('playerJoined', (data) => {
+        console.log('playerJoined event data:', data);
+        const currentGameId = document.getElementById('gameIdDisplay').textContent;
+        if (data.gameId === currentGameId) {
+            const playerList = document.getElementById('playerList');
+            const li = document.createElement('li');
+            li.textContent = data.playername;
+            playerList.appendChild(li);
+        }
+    });
+
+    socket.on('gameRestored', (data) => {
+        console.log('Game session restored:', data);
+        alert(`Welcome back, ${data.playername}!`);
+    });
+}
