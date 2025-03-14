@@ -58,7 +58,11 @@ function initializeSocket(gameId) {
         socket.emit('fetchPlayers', { gameId: savedSession.gameId }); // Fetch players after rejoining
     }
 
-    socket.emit('fetchPlayers', { gameId });
+    socket.on('fetchPlayers', (data) => {
+        console.log('Received fetchPlayers event:', data);
+        socket.emit('fetchPlayers', { gameId: data.gameId });  // 🔹 Fetch player list again
+    });
+    
 
     // Listen for the playersFetched event
     socket.on('playersFetched', (players) => {
@@ -85,7 +89,7 @@ function initializeSocket(gameId) {
         alert('Failed to fetch players. Please try again.');
     });
 
-    // Handle real-time player joins
+    // Handle real-time player joins (useful for other players joining)
     socket.on('playerJoined', (data) => {
         console.log('playerJoined event data:', data);
         const currentGameId = document.getElementById('gameIdDisplay').textContent;
