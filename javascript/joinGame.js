@@ -55,22 +55,45 @@ function initializeSocket(gameId) {
     const savedSession = JSON.parse(localStorage.getItem('gameSession'));
 
     if (savedSession) {
-        socket.emit('rejoinGame', savedSession); 
+        socket.emit('rejoinGame', savedSession);
+        socket.emit('fetchPlayers', { gameId: savedSession.gameId }); // Fetch players after rejoining
     }
 
+    socket.emit('fetchPlayers', { gameId });
+
+    // Listen for the playersFetched event
+    socket.on('playersFetched', (players) => {
+        console.log('Players fetched:', players);
+        const playerList = document.getElementById('playerList');
+        playerList.innerHTML = ''; // Clear the list
+
+        const colors = ["one", "two", "three", "four", "five", "six"];
+        players.forEach((player, index) => {
+            const li = document.createElement('li');
+            li.textContent = player.name;
+            li.classList.add(colors[index % colors.length]);
+            playerList.appendChild(li);
+        });
+    });
+
+    // Listen for errors
+    socket.on('fetchPlayersError', (error) => {
+        console.error('Error fetching players:', error.message);
+        alert('Failed to fetch players. Please try again.');
+    });
+
+    // Handle real-time player joins
     socket.on('playerJoined', (data) => {
         console.log('playerJoined event data:', data);
         const currentGameId = document.getElementById('gameIdDisplay').textContent;
         if (data.gameId === currentGameId) {
             const playerList = document.getElementById('playerList');
-            const li = document.createElement('li');
-            li.textContent = data.playername;
-            playerList.appendChild(li);
+            const playerExists = Array.from(playerList.children).some(li => li.textContent === data.playername);
+            if (!playerExists) {
+                const li = document.createElement('li');
+                li.textContent = data.playername;
+                playerList.appendChild(li);
+            }
         }
-    });
-
-    socket.on('gameRestored', (data) => {
-        console.log('Game session restored:', data);
-        alert(`Welcome back, ${data.playername}!`);
     });
 }
