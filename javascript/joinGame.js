@@ -1,88 +1,76 @@
+let socket; // Global socket variable
+
 function joinGame() {
+    if (socket) socket.disconnect(); // Ensure we don’t create multiple connections
+
     let playername = document.getElementById('usernameInput').value.trim();
-    let gameId = document.getElementById('gamePinInput').value.trim(); // Get the game code
+    let gameId = document.getElementById('gamePinInput').value.trim(); 
 
     if (playername === "" || gameId === "") {
         alert('Du skal indtaste både et brugernavn og spil kode');
         return;
     }
-    console.log('Joining game with data:', JSON.stringify({ playername, gameId }));
 
-    const socket = io('https://130.225.170.52:10242');
+    console.log('Joining game with data:', { playername, gameId });
 
-    // Emit the joinGame event to the server
+    socket = io('https://130.225.170.52:10242');  // Create a single socket connection
+
+    // 🔹 Emit joinGame event
     socket.emit('joinGame', { playername, gameId });
 
+    // 🔹 Handle response from server
     socket.on('joinGameResponse', (data) => {
-        console.log('joinGameResponse:', data); // Debugging: Log the response
         if (data.success) {
-            const player = data.player; // Extract player details
-            alert(`Player added: ID = ${player.id}, Name = ${player.name}, Game = ${player.gameId}`);
-    
-            const session = { playerId: player.id, gameId: player.gameId };
-            localStorage.setItem('gameSession', JSON.stringify(session));
-    
-            // Update the waiting room view with the game code
+            const player = data.player;
+            localStorage.setItem('gameSession', JSON.stringify({ playerId: player.id, gameId: player.gameId }));
+
             document.getElementById('waitingRoomView').innerHTML = `
                 <h1>Venterum</h1>
-                <p id="gameIdDisplay" style="display:none;">${player.gameId}</p>
                 <p>Du har joinet spil ${player.gameId}. Vent på alle spillere</p>
                 <button onclick="startGame('${player.gameId}')">Start Spil</button>
-    
                 <h2>Spillere:</h2>
-                <!-- playerList is here -->
                 <ul id="playerList"></ul>
             `;
-            showView('waitingRoomView'); // Transition to waiting room view
-    
-            initializeSocket(player.gameId); // Initialize WebSocket for real-time updates
+
+            showView('waitingRoomView'); 
+
+            // 🔹 Now listen for real-time updates
+            setupSocketListeners(gameId);
         } else {
             alert('Failed to join game: ' + (data.message || 'Unknown error'));
         }
     });
 
-    // Listen for errors
+    // 🔹 Handle errors
     socket.on('joinGameError', (error) => {
         console.error('Error joining game:', error.message);
         alert('An error occurred while joining the game.');
     });
 }
 
-function initializeSocket(gameId) {
-    const socket = io('https://130.225.170.52:10242');
+// ✅ Extract real-time listeners into a separate function
+function setupSocketListeners(gameId) {
+    socket.emit('fetchPlayers', { gameId });
 
-    const savedSession = JSON.parse(localStorage.getItem('gameSession'));
-    socket.emit('fetchPlayers', { gameId: gameId });
-
-    /*if (savedSession) {
-        console.log("Loading Saved session")
-        socket.emit('rejoinGame', savedSession);
-        socket.emit('fetchPlayers', { gameId: savedSession.gameId }); // Fetch players after rejoining
-    }*/
-
-    // ✅ Every player should listen for the 'fetchPlayers' event and trigger fetching
-    socket.on('fetchPlayers', (data) => {
-        console.log('Received fetchPlayers event:', data);
-        socket.emit('fetchPlayers', { gameId: data.gameId });  // Ensure all players fetch the updated list
-    });
-
-    // ✅ Handle playersFetched event correctly
+    // 🔹 Update player list when fetched
     socket.on('playersFetched', (players) => {
         console.log('Players fetched:', players);
         updatePlayerList(players);
     });
 
-    // ✅ Listen for real-time new player joins
+    // 🔹 Automatically refresh player list when someone joins
     socket.on('playerJoined', (data) => {
-        console.log('playerJoined event data:', data);
-        socket.emit('fetchPlayers', { gameId: data.gameId });  // 🔹 Fetch new players when a player joins
+        console.log('New player joined:', data);
+        socket.emit('fetchPlayers', { gameId });  
     });
 
+    // 🔹 Handle fetch errors
     socket.on('fetchPlayersError', (error) => {
         console.error('Error fetching players:', error.message);
-        alert('Failed to fetch players. Please try again.');
+        alert('Failed to fetch players.');
     });
 }
+
 
 function updatePlayerList(players) {
     const playerList = document.getElementById('playerList');
