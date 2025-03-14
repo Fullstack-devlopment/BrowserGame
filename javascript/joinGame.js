@@ -8,7 +8,7 @@ function joinGame() {
     }
     console.log('Joining game with data:', JSON.stringify({ playername, gameId }));
 
-    fetch('https://130.225.170.52:10242/joinGame', {
+    fetch('https://130.225.170.52:10242/api/joinGame', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
