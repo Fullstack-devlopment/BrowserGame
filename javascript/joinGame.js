@@ -8,15 +8,13 @@ function joinGame() {
     }
     console.log('Joining game with data:', JSON.stringify({ playername, gameId }));
 
-    fetch('https://130.225.170.52:10242/joinGame', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ playername, gameId }) // Ensure gameId is included
-    })
-    .then(response => response.json())
-    .then(data => {
+    const socket = io('https://130.225.170.52:10242');
+
+    // Emit the joinGame event to the server
+    socket.emit('joinGame', { playername, gameId });
+
+    // Listen for the joinGameResponse event from the server
+    socket.on('joinGameResponse', (data) => {
         if (data.message === 'Player successfully joined the game') {
             const player = data.player; // Extract player details
             alert(`Player added: ID = ${player.id}, Name = ${player.name}, Game = ${player.gameId}`);
@@ -41,9 +39,11 @@ function joinGame() {
         } else {
             alert('Failed to join game: ' + data.message);
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
+    });
+
+    // Listen for errors
+    socket.on('joinGameError', (error) => {
+        console.error('Error joining game:', error.message);
         alert('An error occurred while joining the game.');
     });
 }
