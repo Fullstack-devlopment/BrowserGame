@@ -13,31 +13,31 @@ function joinGame() {
     // Emit the joinGame event to the server
     socket.emit('joinGame', { playername, gameId });
 
-    // Listen for the joinGameResponse event from the server
     socket.on('joinGameResponse', (data) => {
-        if (data.message === 'Player successfully joined the game') {
+        console.log('joinGameResponse:', data); // Debugging: Log the response
+        if (data.success) {
             const player = data.player; // Extract player details
             alert(`Player added: ID = ${player.id}, Name = ${player.name}, Game = ${player.gameId}`);
-
+    
             const session = { playerId: player.id, gameId: player.gameId };
             localStorage.setItem('gameSession', JSON.stringify(session));
-
+    
             // Update the waiting room view with the game code
             document.getElementById('waitingRoomView').innerHTML = `
                 <h1>Venterum</h1>
                 <p id="gameIdDisplay" style="display:none;">${player.gameId}</p>
                 <p>Du har joinet spil ${player.gameId}. Vent på alle spillere</p>
                 <button onclick="startGame('${player.gameId}')">Start Spil</button>
-
+    
                 <h2>Spillere:</h2>
                 <!-- playerList is here -->
                 <ul id="playerList"></ul>
             `;
             showView('waitingRoomView'); // Transition to waiting room view
-
+    
             initializeSocket(player.gameId); // Initialize WebSocket for real-time updates
         } else {
-            alert('Failed to join game: ' + data.message);
+            alert('Failed to join game: ' + (data.message || 'Unknown error'));
         }
     });
 
