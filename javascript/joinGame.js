@@ -8,7 +8,7 @@ function joinGame() {
     }
     console.log('Joining game with data:', JSON.stringify({ playername, gameId }));
 
-    fetch('https://130.225.170.10242/joinGame', { //other port 10242
+    fetch('https://130.225.170.3000/joinGame', { //other port 10242
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
