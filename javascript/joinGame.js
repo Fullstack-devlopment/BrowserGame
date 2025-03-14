@@ -30,6 +30,7 @@ function joinGame() {
                 gameId: player.gameId,
                 hostId: hostId // Save the hostId in localStorage
             }));
+            console.log('Session saveed:', JSON.parse(localStorage.getItem('playerSession')));
 
             
             document.getElementById('gameIdText').textContent = player.gameId;
