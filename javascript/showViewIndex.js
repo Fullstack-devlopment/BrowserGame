@@ -4,10 +4,6 @@ function showView(viewId) {
     document.getElementById('enterUsernameView').style.display = 'none';
     document.getElementById('waitingRoomView').style.display = 'none';
 
-
     // show the selected view
     document.getElementById(viewId).style.display = 'block';
-    if (viewId === 'waitingRoomView'){
-        updatePlayerList();
-    }
 }

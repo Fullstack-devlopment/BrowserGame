@@ -35,8 +35,7 @@ function joinGame() {
             `;
             showView('waitingRoomView'); // Transition to waiting room view
 
-            initializeSocket(player.gameId);
-            showView('waitingRoomView')
+            initializeSocket(player.gameId); // Initialize WebSocket for real-time updates
         } else {
             alert('Failed to join game: ' + data.message);
         }

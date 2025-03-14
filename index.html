@@ -71,17 +71,11 @@
 
         <!-- waiting room view -->
         <div id="waitingRoomView" style="display: none;">
-            <h1>
-                Venterum
-            </h1>
-            <p>
-                Du har joinet spil XX. Vent på alle spillere
-            </p>
-            <h2>
-                Spillere:
-            </h2>
-            <p id="playerList"></p>
-
+            <h1>Venterum</h1>
+            <p id="gameIdDisplay" style="display:none;"></p>
+            <p>Du har joinet spil <span id="gameIdText"></span>. Vent på alle spillere</p>
+            <h2>Spillere:</h2>
+            <ul id="playerList"></ul>
             <button onclick="window.location.href='gamePages.html'"> Start Spil</button>
         </div>
     </body>
