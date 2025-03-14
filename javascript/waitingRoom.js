@@ -1,4 +1,5 @@
 // Initialize the socket connection
+/* 
 const socket = io('https://130.225.170.52:10242'); // Use your actual server address and port
 
 socket.on('playerJoined', (data) => {
@@ -12,3 +13,4 @@ socket.on('playerJoined', (data) => {
         playerList.appendChild(li);
     }
 });
+*/

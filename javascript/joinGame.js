@@ -37,6 +37,12 @@ function joinGame() {
             `;
             showView('waitingRoomView'); // Transition to waiting room view
 
+            // Add the player's own name to the list immediately
+            const playerList = document.getElementById('playerList');
+            const li = document.createElement('li');
+            li.textContent = player.name; // Use the player's name from the response
+            playerList.appendChild(li);
+
             initializeSocket(player.gameId);
         } else {
             alert('Failed to join game: ' + data.message);
