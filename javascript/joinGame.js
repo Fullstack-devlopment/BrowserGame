@@ -53,11 +53,11 @@ function initializeSocket(gameId) {
 
     const savedSession = JSON.parse(localStorage.getItem('gameSession'));
 
-    if (savedSession) {
+    /*if (savedSession) {
         console.log("Loading Saved session")
         socket.emit('rejoinGame', savedSession);
         socket.emit('fetchPlayers', { gameId: savedSession.gameId }); // Fetch players after rejoining
-    }
+    }*/
 
     // ✅ Every player should listen for the 'fetchPlayers' event and trigger fetching
     socket.on('fetchPlayers', (data) => {
