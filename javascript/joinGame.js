@@ -54,54 +54,44 @@ function initializeSocket(gameId) {
     const savedSession = JSON.parse(localStorage.getItem('gameSession'));
 
     if (savedSession) {
+        console.log("Loading Saved session")
         socket.emit('rejoinGame', savedSession);
         socket.emit('fetchPlayers', { gameId: savedSession.gameId }); // Fetch players after rejoining
     }
 
+    // ✅ Every player should listen for the 'fetchPlayers' event and trigger fetching
     socket.on('fetchPlayers', (data) => {
         console.log('Received fetchPlayers event:', data);
-        socket.emit('fetchPlayers', { gameId: data.gameId });  // 🔹 Fetch player list again
+        socket.emit('fetchPlayers', { gameId: data.gameId });  // Ensure all players fetch the updated list
     });
-    
 
-    // Listen for the playersFetched event
+    // ✅ Handle playersFetched event correctly
     socket.on('playersFetched', (players) => {
-        console.log('Players fetched:', players); // Debugging: Log the fetched players
-        
-        // Ensure players is always treated as an array
-        const playersArray = Array.isArray(players) ? players : [players];
-    
-        const playerList = document.getElementById('playerList');
-        playerList.innerHTML = ''; // Clear the list
-    
-        const colors = ["one", "two", "three", "four", "five", "six"];
-        playersArray.forEach((player, index) => {
-            const li = document.createElement('li');
-            li.textContent = player.name;
-            li.classList.add(colors[index % colors.length]);
-            playerList.appendChild(li);
-        });
+        console.log('Players fetched:', players);
+        updatePlayerList(players);
     });
 
-    // Listen for errors
+    // ✅ Listen for real-time new player joins
+    socket.on('playerJoined', (data) => {
+        console.log('playerJoined event data:', data);
+        socket.emit('fetchPlayers', { gameId: data.gameId });  // 🔹 Fetch new players when a player joins
+    });
+
     socket.on('fetchPlayersError', (error) => {
         console.error('Error fetching players:', error.message);
         alert('Failed to fetch players. Please try again.');
     });
+}
 
-    // Handle real-time player joins (useful for other players joining)
-    socket.on('playerJoined', (data) => {
-        console.log('playerJoined event data:', data);
-        const currentGameId = document.getElementById('gameIdDisplay').textContent;
-        if (data.gameId === currentGameId) {
-            const playerList = document.getElementById('playerList');
-            const playerExists = Array.from(playerList.children).some(li => li.textContent === data.playername);
-            if (!playerExists) {
-                console.log('Adding new player to the list:', data.playername);
-                const li = document.createElement('li');
-                li.textContent = data.playername;
-                playerList.appendChild(li);
-            }
-        }
+function updatePlayerList(players) {
+    const playerList = document.getElementById('playerList');
+    playerList.innerHTML = ''; // Clear the list
+
+    const colors = ["one", "two", "three", "four", "five", "six"];
+    players.forEach((player, index) => {
+        const li = document.createElement('li');
+        li.textContent = player.name;
+        li.classList.add(colors[index % colors.length]);
+        playerList.appendChild(li);
     });
 }
