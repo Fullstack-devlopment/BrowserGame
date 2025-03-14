@@ -60,27 +60,24 @@ function initializeSocket(gameId) {
 
     socket.emit('fetchPlayers', { gameId });
 
+    // Listen for the playersFetched event
     socket.on('playersFetched', (players) => {
-        console.log('Players fetched:', players);
+        console.log('Players fetched:', players); // Debugging: Log the fetched players
         
-        // If players is not an array, wrap it in an array
-        if (!Array.isArray(players)) {
-            players = [players]; // Wrap the single player in an array
-        }
+        // Ensure players is always treated as an array
+        const playersArray = Array.isArray(players) ? players : [players];
     
         const playerList = document.getElementById('playerList');
         playerList.innerHTML = ''; // Clear the list
     
         const colors = ["one", "two", "three", "four", "five", "six"];
-        players.forEach((player, index) => {
+        playersArray.forEach((player, index) => {
             const li = document.createElement('li');
             li.textContent = player.name;
             li.classList.add(colors[index % colors.length]);
             playerList.appendChild(li);
         });
     });
-    
-    
 
     // Listen for errors
     socket.on('fetchPlayersError', (error) => {
