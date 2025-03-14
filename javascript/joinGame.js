@@ -52,6 +52,7 @@ function initializeSocket(gameId) {
     const socket = io('https://130.225.170.52:10242');
 
     const savedSession = JSON.parse(localStorage.getItem('gameSession'));
+    socket.emit('fetchPlayers', { gameId: gameId });
 
     /*if (savedSession) {
         console.log("Loading Saved session")
