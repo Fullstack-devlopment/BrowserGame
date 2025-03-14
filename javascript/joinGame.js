@@ -22,11 +22,15 @@ function joinGame() {
     socket.on('joinGameResponse', (data) => {
         if (data.success) {
             const player = data.player;
-            localStorage.setItem('playerSession', JSON.stringify({ // Save player data locally for checking who is the current player
+            const hostId = data.hostId;  // Assuming the server sends the hostId along with the response
+
+            localStorage.setItem('playerSession', JSON.stringify({
                 playerId: player.id, 
                 playerName: player.name,
-                gameId: player.gameId 
+                gameId: player.gameId,
+                hostId: hostId // Save the hostId in localStorage
             }));
+
             
 
             document.getElementById('waitingRoomView').innerHTML = `
@@ -41,6 +45,8 @@ function joinGame() {
 
             // 🔹 Now listen for real-time updates
             setupSocketListeners(gameId);
+
+            checkIfHostAndUpdateUI(); // Check if the player is the host and update the UI. Used for now until React is introduced
         } else {
             alert('Failed to join game: ' + (data.message || 'Unknown error'));
         }
