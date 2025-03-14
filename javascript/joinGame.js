@@ -22,7 +22,12 @@ function joinGame() {
     socket.on('joinGameResponse', (data) => {
         if (data.success) {
             const player = data.player;
-            localStorage.setItem('gameSession', JSON.stringify({ playerId: player.id, gameId: player.gameId }));
+            localStorage.setItem('playerSession', JSON.stringify({ // Save player data locally for checking who is the current player
+                playerId: player.id, 
+                playerName: player.name,
+                gameId: player.gameId 
+            }));
+            
 
             document.getElementById('waitingRoomView').innerHTML = `
                 <h1>Venterum</h1>
